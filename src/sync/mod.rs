@@ -182,13 +182,19 @@ pub use rwlock::{RwLock, RwLockReadGuard, RwLockWriteGuard};
 mod mutex;
 mod rwlock;
 
-cfg_unstable! {
-    pub use barrier::{Barrier, BarrierWaitResult};
-    pub use channel::{channel, Sender, Receiver};
+#[cfg(feature = "unstable")]
+#[cfg_attr(feature = "docs", doc(cfg(unstable)))]
+pub use barrier::{Barrier, BarrierWaitResult};
+#[cfg(feature = "unstable")]
+#[cfg_attr(feature = "docs", doc(cfg(unstable)))]
+pub use channel::{channel, Sender, Receiver};
+#[cfg(feature = "unstable")]
+#[cfg_attr(feature = "docs", doc(cfg(unstable)))]
+mod barrier;
+#[cfg(feature = "unstable")]
+#[cfg_attr(feature = "docs", doc(cfg(unstable)))]
+mod channel;
 
-    mod barrier;
-    mod channel;
-}
 
 pub(crate) mod waker_set;
 pub(crate) use waker_set::WakerSet;
